@@ -74,3 +74,10 @@ def model_form_upload(request):
     else:
         form = DocumentForm()
     return render(request, 'files/model_form_upload.html', {'form': form})
+
+
+@login_required(login_url='/accounts/login/')
+def destroy(request, id):
+    documents = Document.objects.get(id=id)
+    documents.delete()
+    return redirect('home')

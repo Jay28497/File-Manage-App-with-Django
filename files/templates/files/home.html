@@ -6,15 +6,30 @@
     <p><i class="fa fa-hand-o-right" style="font-size:24px"></i> <a href="{% url 'simple_upload' %}">Simple Upload</a></p>
     <p><i class="fa fa-hand-o-right" style="font-size:24px"></i> <a href="{% url 'model_form' %}">Model Form Upload</a></p>
   </ul>
-  <hr class="my-4">
-  <p>Uploaded files:</p>
-  <ul>
-    {% for obj in documents %}
-      <li>
-        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
-        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
-      </li>
-    {% endfor %}
-  </ul>
 </div>
+<div class="container">
+<h4>Uploaded files history:</h4>
+</div>
+<div class="container mt-3">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Time Stamp</th>
+      <th>Download Files</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for obj in documents %}
+    <tr>
+      <td>{{ obj.file_name }}</td>
+      <td>{{ obj.uploaded_at }}</td>
+      <td><a download="{{ obj.document.url }}" href="{{ obj.document.url }}"><button type="button" class="btn btn-primary">Download</button></a></td>
+      <td><a href="/delete/{{ obj.id }}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
 {% endblock %}

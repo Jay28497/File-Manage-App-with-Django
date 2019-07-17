@@ -26,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('files.urls')),
     path('simple_upload/', views.simple_upload, name='simple_upload'),
     path('model_form/', views.model_form_upload, name='model_form'),
+    path('delete/<int:id>', views.destroy),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
