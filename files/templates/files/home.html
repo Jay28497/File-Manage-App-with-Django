@@ -1,0 +1,20 @@
+{% extends 'files/base.html' %}
+
+{% block content %}
+<div class="jumbotron mt-5">
+  <ul>
+    <p><i class="fa fa-hand-o-right" style="font-size:24px"></i> <a href="{% url 'simple_upload' %}">Simple Upload</a></p>
+    <p><i class="fa fa-hand-o-right" style="font-size:24px"></i> <a href="{% url 'model_form' %}">Model Form Upload</a></p>
+  </ul>
+  <hr class="my-4">
+  <p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
